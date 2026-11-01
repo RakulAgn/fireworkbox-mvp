@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FireworkBox — Packaging Studio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="spark">✦</span> FireworkBox <small>STUDIO</small></a>
+    <div class="crumb">Projects <span>›</span> MagicCrackers <span>›</span> <strong>Adiyal / Paper Bomb</strong></div>
+    <div class="header-actions"><button class="quiet" id="saveProject">Save project</button><button class="primary" id="exportSvg">Export SVG</button><button class="quiet" id="printPdf">Print / PDF</button></div>
+  </header>
+
+  <main class="app-shell">
+    <aside class="left-panel">
+      <section class="panel-section">
+        <p class="eyebrow">BOX TEMPLATE</p>
+        <button class="template-card active" id="openTemplates"><span class="template-icon">▱</span><span id="templateSummary">Paper Bomb<br><small>Flat carton • 6 panels</small></span><b>⌄</b></button>
+        <div class="template-library" id="templateLibrary">
+          <input id="templateSearch" placeholder="Search box, sleeve, wrapper…" />
+          <div id="templateResults"></div>
+        </div>
+        <label class="upload"><input type="file" id="layoutUpload" accept="image/*,.svg" hidden>Upload a new dieline <span>↑</span></label>
+      </section>
+      <section class="panel-section ai-panel">
+        <p class="eyebrow">AI ART DIRECTOR <span class="ai-dot">●</span></p>
+        <label>Product name<input id="productName" value="ADIYAL" /></label>
+        <label>Brand<input id="brandName" value="MagicCrackers" /></label>
+        <label>Asset type<select id="assetType"><option value="original wrestling hero character">Original hero character</option><option value="explosive flame illustration">Flames / explosion</option><option value="premium fireworks pattern">Background pattern</option><option value="gold ornamental badge">Ornamental badge</option></select></label>
+        <label>Design direction<textarea id="designPrompt">Dramatic arena lights, crimson and gold flames, premium Indian fireworks packaging</textarea></label>
+        <div class="generation-options"><label>Variants<select id="variantCount"><option value="1">1 image</option><option value="2" selected>2 images</option><option value="3">3 images</option></select></label><label>Quality<select id="quality"><option value="low">Draft</option><option value="medium" selected>Standard</option><option value="high">High</option></select></label></div>
+        <label class="checkline"><input type="checkbox" id="transparent" checked> Transparent PNG — recommended for movable assets</label>
+        <button class="primary full" id="generate">✦ Generate assets</button>
+        <p class="hint">AI never generates your product or brand text. Add those as editable text layers.</p>
+      </section>
+      <section class="panel-section asset-shelf"><p class="eyebrow">GENERATED ASSETS</p><div id="assetShelf" class="asset-grid"><p class="shelf-empty">Your generated artwork will appear here. Select an asset to place it on the box.</p></div></section>
+      <section class="panel-section add-tools">
+        <p class="eyebrow">ADD TO DESIGN</p>
+        <div class="tool-grid"><button data-add="text">T<span>Text</span></button><button data-add="badge">✦<span>Badge</span></button><button data-add="flare">☄<span>Flare</span></button><button data-add="image">▧<span>Artwork</span></button></div>
+      </section>
+    </aside>
+
+    <section class="workspace">
+      <div class="workspace-toolbar"><div><button id="zoomOut">−</button><span id="zoomText">100%</span><button id="zoomIn">+</button></div><span class="status"><i></i> All changes saved</span><button class="show-guides active" id="guideToggle">⌗ Dieline guides</button></div>
+      <div class="board-scroll"><div class="artboard" id="artboard" aria-label="Packaging canvas"><div class="design" id="design"></div><svg class="dieline" id="dieline" viewBox="0 0 1200 720" preserveAspectRatio="none"><rect x="45" y="45" width="1110" height="630"/><path d="M45 170H1155M45 550H1155M230 45V675M490 45V675M710 45V675M970 45V675"/><path class="fold" d="M45 170H1155M45 550H1155M230 45V675M490 45V675M710 45V675M970 45V675"/><text x="290" y="357">FRONT PANEL</text><text x="770" y="357">BACK PANEL</text><text x="70" y="105">TOP FLAP</text></svg></div></div>
+      <div class="legend"><span class="cut"></span> Cut line <span class="fold-dot"></span> Fold line <span class="safe"></span> Safe area</div>
+    </section>
+
+    <aside class="right-panel">
+      <section class="panel-section layers"><div class="panel-title"><p class="eyebrow">LAYERS</p><button id="deleteLayer" title="Delete selected layer">⌫</button></div><div id="layerList"></div></section>
+      <section class="panel-section inspector" id="inspector"><p class="eyebrow">SELECT AN OBJECT</p><p class="empty">Choose an object on the design to edit its placement and style.</p></section>
+    </aside>
+  </main>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
+
